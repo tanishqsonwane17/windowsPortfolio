@@ -8,18 +8,15 @@ const Home = () => {
   const handleRightClick = (e) => {
     e.preventDefault();
 
-    const menuWidth = menuRef.current?.offsetWidth || 150; // fallback
-    const menuHeight = menuRef.current?.offsetHeight || 200; // fallback
+    const menuWidth = menuRef.current?.offsetWidth || 150;
+    const menuHeight = menuRef.current?.offsetHeight || 200;
 
     let x = e.clientX;
     let y = e.clientY;
 
-    // Agar right corner me ho to x adjust karo
     if (x + menuWidth > window.innerWidth) {
       x = window.innerWidth - menuWidth - 10;
     }
-
-    // Agar bottom corner me ho to y adjust karo
     if (y + menuHeight > window.innerHeight) {
       y = window.innerHeight - menuHeight - 10;
     }
