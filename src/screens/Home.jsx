@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, } from "react";
 import RightMenu from "../components/RightMenu";
 
 const Home = () => {
@@ -41,7 +41,6 @@ const Home = () => {
       className="h-screen w-full bg-slate-400 bg-[url('https://4kwallpapers.com/images/wallpapers/windows-11-stock-3d-5689x2400-10781.png')] bg-cover bg-center relative"
     >
       <div className="flex flex-col gap-5 flex-wrap w-0 h-full p-4">
-        <div className="h-12 w-12 bg-yellow-400 rounded-2xl"></div>
         <div className="h-12 w-12 bg-yellow-400 rounded-2xl"></div>
       </div>
 

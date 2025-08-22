@@ -18,7 +18,8 @@ const RightMenu = () => {
        </div>
         <hr className='text-[#00000047]'/>
        <div className='flex flex-col gap-2'>
-       <li className='flex gap-2 items-center'> <CiCirclePlus className='inline-block'/> new</li>
+       <li
+        className='flex gap-2 items-center'> <CiCirclePlus className='inline-block'/> new</li>
          <li className='flex gap-2 items-center'> <LuUndo className='inline-block'/>  undo</li>
        </div>
         <hr className='text-[#00000047]' />
