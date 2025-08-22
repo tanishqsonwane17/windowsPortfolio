@@ -1,20 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import RightMenu from "../components/RightMenu";
 
 const Home = () => {
   const [menu, setMenu] = useState({ visible: false, x: 0, y: 0 });
+  const menuRef = useRef(null);
 
   const handleRightClick = (e) => {
-    e.preventDefault(); // default browser ka context menu hatao
+    e.preventDefault();
+
+    const menuWidth = menuRef.current?.offsetWidth || 150; // fallback
+    const menuHeight = menuRef.current?.offsetHeight || 200; // fallback
+
+    let x = e.clientX;
+    let y = e.clientY;
+
+    // Agar right corner me ho to x adjust karo
+    if (x + menuWidth > window.innerWidth) {
+      x = window.innerWidth - menuWidth - 10;
+    }
+
+    // Agar bottom corner me ho to y adjust karo
+    if (y + menuHeight > window.innerHeight) {
+      y = window.innerHeight - menuHeight - 10;
+    }
+
     setMenu({
       visible: true,
-      x: e.clientX, // mouse X position
-      y: e.clientY, // mouse Y position
+      x,
+      y,
     });
   };
 
   const handleClick = () => {
-    // normal left click pe band kar dena
     if (menu.visible) {
       setMenu({ ...menu, visible: false });
     }
@@ -24,7 +41,7 @@ const Home = () => {
     <div
       onContextMenu={handleRightClick}
       onClick={handleClick}
-      className="h-screen w-full bg-slate-400 bg-[url('https://cdn.wallpaperhub.app/cloudcache/2/b/c/3/7/5/2bc375a59ea8bb65dbd995b77ab56cbc3107a651.jpg')] bg-cover bg-center relative"
+      className="h-screen w-full bg-slate-400 bg-[url('https://4kwallpapers.com/images/wallpapers/windows-11-stock-3d-5689x2400-10781.png')] bg-cover bg-center relative"
     >
       <div className="flex flex-col gap-5 flex-wrap w-0 h-full p-4">
         <div className="h-12 w-12 bg-yellow-400 rounded-2xl"></div>
@@ -33,9 +50,9 @@ const Home = () => {
 
       {menu.visible && (
         <div
+          ref={menuRef}
           style={{ top: menu.y, left: menu.x }}
-          className="absolute"
-        >
+          className="absolute z-50">
           <RightMenu />
         </div>
       )}
