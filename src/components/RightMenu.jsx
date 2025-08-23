@@ -16,7 +16,9 @@ const RightMenu = ({ onNewFolder }) => {
           <li className='flex gap-2 items-center cursor-pointer hover:bg-[#d5cece63] px-4 rounded-2xl'> 
             <BsArrowDownUp /> Sort by
           </li>
-          <li className='flex gap-2 items-center cursor-pointer hover:bg-[#d5cece63] px-4 rounded-2xl'> 
+         <li
+            onClick={() => window.location.reload()}
+            className='flex gap-2 items-center cursor-pointer hover:bg-[#d5cece63] px-4 rounded-2xl'> 
             <IoRefresh /> Refresh
           </li>
         </div>

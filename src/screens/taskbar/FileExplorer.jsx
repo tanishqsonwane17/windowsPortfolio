@@ -418,8 +418,8 @@ const FileExplorer = () => {
 
           <div className="mt-4 text-xs uppercase tracking-wide text-zinc-500 px-2 mb-1">This PC</div>
           <button
-            className={`w-full flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm  ${
-              nav.section === "ThisPC" && nav.path.length === 0 ? "0" : ""
+            className={`w-full flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm hover:bg-zinc-100 ${
+              nav.section === "ThisPC" && nav.path.length === 0 ? "bg-zinc-100" : ""
             }`}
             onClick={openDriveRoot}
           >
@@ -428,18 +428,17 @@ const FileExplorer = () => {
           <div className="mt-1 space-y-1">
             {Object.entries(fs.ThisPC).map(([name, info]) => (
             <button
-  key={name}
-  className={`w-full flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm 
-    ${nav.section === "ThisPC" && nav.path[0] === name ? "bg-zinc-100 dark:bg-zinc-600" : ""}`}
-  onClick={() => openDrive(name)}
->
-  <HardDrive size={16} /> {name}
-  <span className="ml-auto text-xs text-zinc-500 dark:text-zinc-400">
-    {Math.round((info.used / info.total) * 100)}%
-  </span>
-</button>
-
-
+             key={name}
+             className={`w-full flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm 
+               hover:bg-zinc-100 dark:hover:bg-zinc-600
+               ${nav.section === "ThisPC" && nav.path[0] === name ? "bg-zinc-100 dark:bg-zinc-600" : ""}`}
+             onClick={() => openDrive(name)}
+           >
+  <           HardDrive size={16} /> {name}
+             <span className="ml-auto text-xs text-zinc-500 dark:text-zinc-400">
+               {Math.round((info.used / info.total) * 100)}%
+             </span>
+           </button>
             ))}
           </div>
         </aside>
