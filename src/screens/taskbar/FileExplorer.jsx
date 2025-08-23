@@ -345,13 +345,53 @@ const FileExplorer = () => {
       : "bg-gradient-to-b from-zinc-50 to-white text-zinc-800"
   } h-screen w-full`}>
       {/* Title bar */}
-     <div className="flex items-center gap-2">
-  <Button className="hover:bg-blue-50"><MonitorSmartphone size={18} /><span className="hidden md:inline">Responsive</span></Button>
-  <Button onClick={() => setDarkMode(!darkMode)} className="hover:bg-blue-50">
-    {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-  </Button>
-  <Button className="hover:bg-blue-50"><Settings size={18} /></Button>
+ {/* Title bar */}
+<div className={`flex items-center justify-between px-2 py-1 border-b 
+  ${darkMode ? "bg-zinc-800 border-zinc-700" : "bg-zinc-100 border-zinc-200"}`}>
+
+  {/* Left side */}
+  <div className="flex items-center gap-2">
+    <Button className="hover:bg-blue-50">
+      <MonitorSmartphone size={18} />
+      <span className="hidden md:inline">Responsive</span>
+    </Button>
+    <Button onClick={() => setDarkMode(!darkMode)} className="hover:bg-blue-50">
+      {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+    </Button>
+    <Button className="hover:bg-blue-50"><Settings size={18} /></Button>
+  </div>
+
+  {/* Right side (window controls) */}
+  <div className="flex items-center gap-1">
+    {/* Minimize */}
+    <button
+      className={`w-10 h-8 flex items-center justify-center rounded hover:bg-zinc-200/50 ${
+        darkMode ? "hover:bg-zinc-700 text-zinc-300" : "text-zinc-700"
+      }`}
+    >
+      &#x2212;
+    </button>
+    {/* Maximize */}
+    <button
+      className={`w-10 h-8 flex items-center justify-center rounded hover:bg-zinc-200/50 ${
+        darkMode ? "hover:bg-zinc-700 text-zinc-300" : "text-zinc-700"
+      }`}
+    >
+      ☐
+    </button>
+    {/* Close */}
+    <button
+      className={`w-10 h-8 flex items-center justify-center rounded ${
+        darkMode
+          ? "hover:bg-red-600 text-zinc-300"
+          : "hover:bg-red-500 hover:text-white text-zinc-700"
+      }`}
+    >
+      ×
+    </button>
+  </div>
 </div>
+
 
 
       {/* Command bar */}
