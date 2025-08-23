@@ -44,7 +44,6 @@ const Home = () => {
     setMenu({ ...menu, visible: false });
   };
 
-  // ✅ Input change
   const handleNameChange = (id, value) => {
     setFolders(
       folders.map((f) =>
@@ -53,7 +52,6 @@ const Home = () => {
     );
   };
 
-  // ✅ Blur or Enter press → stop editing
   const handleFinishEditing = (id) => {
     setFolders(
       folders.map((f) =>
@@ -68,7 +66,7 @@ const Home = () => {
       onClick={handleClick}
       className="h-screen w-full bg-slate-400 bg-[url('https://4kwallpapers.com/images/wallpapers/windows-11-stock-3d-5689x2400-10781.png')] bg-cover bg-center relative"
     >
- <div className="flex flex-wrap flex-col content-start h-full p-4 gap-6">
+   <div className="flex flex-wrap flex-col content-start h-full p-4 gap-6">
   {/* Fixed folders */}
   <div className="flex flex-col items-center w-20">
     <div className="text-4xl">📁</div>
@@ -105,15 +103,13 @@ const Home = () => {
         </p>
       )}
     </div>
-  ))}
-</div>
-
+    ))}
+      </div>
       {menu.visible && (
         <div
           ref={menuRef}
           style={{ top: menu.y, left: menu.x }}
-          className="absolute z-50"
-        >
+          className="absolute z-50" >
           <RightMenu onNewFolder={handleNewFolder} />
         </div>
       )}
