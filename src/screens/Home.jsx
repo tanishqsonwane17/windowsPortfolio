@@ -68,17 +68,35 @@ const Home = () => {
       onClick={handleClick}
       className="h-screen w-full bg-slate-400 bg-[url('https://4kwallpapers.com/images/wallpapers/windows-11-stock-3d-5689x2400-10781.png')] bg-cover bg-center relative"
     >
-    <div className="flex flex-wrap flex-col content-start h-full p-4 gap-6">
+ <div className="flex flex-wrap flex-col content-start h-full p-4 gap-6">
+  {/* Fixed folders */}
+  <div className="flex flex-col items-center w-20">
+    <div className="text-4xl">📁</div>
+    <p className="mt-1 text-xs text-white text-center whitespace-nowrap overflow-hidden text-ellipsis w-full">
+      Projects
+    </p>
+  </div>
+
+  <div className="flex flex-col items-center w-20">
+    <div className="text-4xl">📁</div>
+    <p className="mt-1 text-xs text-white text-center whitespace-nowrap overflow-hidden text-ellipsis w-full">
+      Skills
+    </p>
+  </div>
+
+  {/* Dynamic folders */}
   {folders.map((folder) => (
     <div key={folder.id} className="flex flex-col items-center w-20">
-      <div className="text-4xl">📁</div>
+      <div className="text-4xl cursor-pointer">📁</div>
       {folder.isEditing ? (
         <input
           autoFocus
           value={folder.name}
           onChange={(e) => handleNameChange(folder.id, e.target.value)}
           onBlur={() => handleFinishEditing(folder.id)}
-          onKeyDown={(e) => e.key === "Enter" && handleFinishEditing(folder.id)}
+          onKeyDown={(e) =>
+            e.key === "Enter" && handleFinishEditing(folder.id)
+          }
           className="mt-1 text-sm w-full text-center px-1 text-white rounded outline-none border border-gray-300 whitespace-nowrap overflow-hidden text-ellipsis"
         />
       ) : (
@@ -89,8 +107,6 @@ const Home = () => {
     </div>
   ))}
 </div>
-
-
 
       {menu.visible && (
         <div
