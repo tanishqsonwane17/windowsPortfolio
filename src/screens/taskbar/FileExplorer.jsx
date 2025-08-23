@@ -375,14 +375,16 @@ const FileExplorer = () => {
               </div>
             ))}
           </div>
-          <div className="flex items-center gap-2 rounded-2xl border bg-white px-2 py-1.5">
-            <Search size={16} className="text-zinc-500" />
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={`Search ${breadcrumbs[breadcrumbs.length - 1] || "This PC"}`}
-              className="w-40 md:w-64 outline-none text-sm bg-transparent"
-            />
+          <div className="flex items-center gap-2 rounded-2xl  py-2 border-slate-500 ">
+           <input
+           type="text"
+           placeholder="Search..."
+           className={`w-full rounded-xl px-3 py-2 text-sm outline-none 
+             ${darkMode 
+               ? "bg-zinc-800 text-zinc-200 placeholder-zinc-400 focus:bg-zinc-700" 
+               : "bg-zinc-100 text-zinc-800 placeholder-zinc-500 focus:bg-white"} 
+           `}
+         />
             <RefreshCw size={16} className="text-zinc-500" />
           </div>
           <Button className="hover:bg-blue-50"><MoreVertical size={18} /></Button>
@@ -398,22 +400,26 @@ const FileExplorer = () => {
           <div className="text-xs uppercase tracking-wide text-zinc-500 px-2 mb-1">Quick access</div>
           <nav className="space-y-1">
             {Object.keys(fs.QuickAccess).map((key) => (
-              <button
-                key={key}
-                className={`w-full flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm hover:bg-zinc-100 ${
-                  nav.section === "QuickAccess" && nav.path[0] === key ? "bg-zinc-100" : ""
-                }`}
-                onClick={() => openQuick(key)}
-              >
-                <FolderIcon size={16} /> {key}
-              </button>
+                      <button
+  key={key}
+  onClick={() => openQuick(key)}
+  className={`w-full flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm transition-colors
+    ${darkMode 
+      ? "text-zinc-200 hover:bg-zinc-700 border border-transparent hover:border-zinc-600" 
+      : "text-zinc-800 hover:bg-zinc-100 border border-transparent hover:border-zinc-200"} 
+    ${nav.section === "QuickAccess" && nav.path[0] === key 
+      ? (darkMode ? "bg-zinc-700" : "bg-zinc-100") 
+      : ""}`}
+>
+  <FolderIcon size={16} /> {key}
+                </button>
             ))}
           </nav>
 
           <div className="mt-4 text-xs uppercase tracking-wide text-zinc-500 px-2 mb-1">This PC</div>
           <button
-            className={`w-full flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm hover:bg-zinc-100 ${
-              nav.section === "ThisPC" && nav.path.length === 0 ? "bg-zinc-100" : ""
+            className={`w-full flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm  ${
+              nav.section === "ThisPC" && nav.path.length === 0 ? "0" : ""
             }`}
             onClick={openDriveRoot}
           >
@@ -421,18 +427,19 @@ const FileExplorer = () => {
           </button>
           <div className="mt-1 space-y-1">
             {Object.entries(fs.ThisPC).map(([name, info]) => (
-              <button
-                key={name}
-                className={`w-full flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm hover:bg-zinc-100 ${
-                  nav.section === "ThisPC" && nav.path[0] === name ? "bg-zinc-100" : ""
-                }`}
-                onClick={() => openDrive(name)}
-              >
-                <HardDrive size={16} /> {name}
-                <span className="ml-auto text-xs text-zinc-500">
-                  {Math.round((info.used / info.total) * 100)}%
-                </span>
-              </button>
+            <button
+  key={name}
+  className={`w-full flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm 
+    ${nav.section === "ThisPC" && nav.path[0] === name ? "bg-zinc-100 dark:bg-zinc-600" : ""}`}
+  onClick={() => openDrive(name)}
+>
+  <HardDrive size={16} /> {name}
+  <span className="ml-auto text-xs text-zinc-500 dark:text-zinc-400">
+    {Math.round((info.used / info.total) * 100)}%
+  </span>
+</button>
+
+
             ))}
           </div>
         </aside>
@@ -460,51 +467,29 @@ const FileExplorer = () => {
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
                 {filtered.map((item) => (
                   <motion.div
-                    key={item.name}
-                    layout
-                    onDoubleClick={() => openItem(item)}
-                    onContextMenu={(e) => onContextMenu(e, item)}
-                    className={`group rounded-2xl border p-3 bg-white hover:shadow-sm cursor-default select-none ${
-                      selected.has(item.name) ? "ring-2 ring-blue-500" : ""
-                    }`}
-                    onClick={(e) => {
-                      if (e.shiftKey || e.ctrlKey || e.metaKey) toggleSelection(item.name);
-                      else setSelected(new Set([item.name]));
-                    }}
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="rounded-xl p-2 border bg-zinc-50">
+                      key={item.name}
+                      layout
+                      onDoubleClick={() => openItem(item)}
+                      onContextMenu={(e) => onContextMenu(e, item)}
+                      className={`group rounded-2xl border p-3 cursor-default select-none ${
+                        darkMode
+                          ? "bg-zinc-800 hover:bg-zinc-700 border-zinc-700 text-white"
+                          : "bg-white hover:shadow-sm border-zinc-200 text-zinc-800"
+                      } ${selected.has(item.name) ? "ring-2 ring-blue-500" : ""}`}
+                      onClick={(e) => {
+                        if (e.shiftKey || e.ctrlKey || e.metaKey) toggleSelection(item.name);
+                        else setSelected(new Set([item.name]));
+                      }}
+                    >
+                      <div className={`rounded-xl p-2 border ${
+                        darkMode ? "bg-zinc-700 border-zinc-600" : "bg-zinc-50 border-zinc-200"
+                      }`}>
                         {item.type === "folder" && <FolderIcon />}
                         {item.type === "file" && <FileIcon />}
-                        {item.type === "drive" && <HardDrive />}
+                       {item.type === "drive" && <HardDrive />}
                       </div>
-                      <Star size={16} className="opacity-0 group-hover:opacity-100 text-zinc-300" />
-                    </div>
-                    <div className="mt-3">
-                      {renaming === item.name ? (
-                        <input
-                          autoFocus
-                          defaultValue={item.name}
-                          onBlur={(e) => renameItem(item.name, e.target.value)}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") renameItem(item.name, e.currentTarget.value);
-                            if (e.key === "Escape") setRenaming(null);
-                          }}
-                          className="w-full rounded-xl border px-2 py-1 text-sm"
-                        />
-                      ) : (
-                        <div className="text-sm font-medium truncate" title={item.name}>{item.name}</div>
-                      )}
-                      <div className="text-xs text-zinc-500 mt-0.5">
-                        {item.type === "file" && item.ext?.toUpperCase()} {item.size ? 
-                          <span>• {fmtBytes(item.size)}</span> : null}
-                        {item.type === "folder" && <span>Folder</span>}
-                        {item.type === "drive" && (
-                          <span>{Math.round((item.info.used / item.info.total) * 100)}% used</span>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                    
                 ))}
               </div>
             ) : (
@@ -517,18 +502,9 @@ const FileExplorer = () => {
                 </div>
                 <div>
                   {filtered.map((item) => (
-                    <div
-                      key={item.name}
-                      onDoubleClick={() => openItem(item)}
-                      onContextMenu={(e) => onContextMenu(e, item)}
-                      className={`grid grid-cols-12 px-3 py-2 text-sm hover:bg-zinc-50 cursor-default ${
-                        selected.has(item.name) ? "bg-blue-50" : ""
-                      }`}
-                      onClick={(e) => {
-                        if (e.shiftKey || e.ctrlKey || e.metaKey) toggleSelection(item.name);
-                        else setSelected(new Set([item.name]));
-                      }}
-                    >
+                  <div className={`rounded-2xl overflow-hidden border ${
+                        darkMode ? "bg-zinc-900 border-zinc-700" : "bg-white border-zinc-200"
+                      }`}>
                       <div className="col-span-6 flex items-center gap-2">
                         <div className="w-6 h-6 grid place-items-center rounded border bg-zinc-50">
                           {item.type === "folder" && <FolderIcon size={16} />}
@@ -582,15 +558,18 @@ const FileExplorer = () => {
       {/* Context menu */}
       <AnimatePresence>
         {contextMenu && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.12 }}
-            className="fixed z-[100] min-w-[180px] rounded-xl border bg-white shadow-xl overflow-hidden"
-            style={{ left: contextMenu.x, top: contextMenu.y }}
-            onClick={(e) => e.stopPropagation()}
-          >
+        <motion.div
+  initial={{ opacity: 0, scale: 0.95 }}
+  animate={{ opacity: 1, scale: 1 }}
+  exit={{ opacity: 0, scale: 0.97 }}
+  transition={{ duration: 0.12 }}
+  className={`fixed z-[100] min-w-[180px] rounded-xl border shadow-xl overflow-hidden ${
+    darkMode ? "bg-zinc-800 border-zinc-700 text-white" : "bg-white border-zinc-200 text-zinc-800"
+  }`}
+  style={{ left: contextMenu.x, top: contextMenu.y }}
+  onClick={(e) => e.stopPropagation()}
+>
+
             <MenuItem onClick={() => { openItem(contextMenu.item); setContextMenu(null); }}>Open</MenuItem>
             <MenuItem onClick={() => { setRenaming(contextMenu.item.name); setContextMenu(null); }}>Rename</MenuItem>
             <MenuItem onClick={() => { deleteSelected(); setContextMenu(null); }} icon={Trash2}>Delete</MenuItem>
@@ -607,13 +586,16 @@ const FileExplorer = () => {
   );
 };
 
-const MenuItem = ({ children, onClick, icon: Icon }) => (
+const MenuItem = ({ children, onClick, icon: Icon, darkMode }) => (
   <button
     onClick={onClick}
-    className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-zinc-50 text-left"
+    className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left ${
+      darkMode ? "hover:bg-zinc-700 text-zinc-200" : "hover:bg-zinc-50 text-zinc-800"
+    }`}
   >
-    {Icon && <Icon size={16} className="text-zinc-500" />} {children}
+    {Icon && <Icon size={16} className="opacity-70" />} {children}
   </button>
 );
+
 
 export default FileExplorer;
