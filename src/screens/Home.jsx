@@ -69,6 +69,7 @@ const Home = () => {
    <div className="flex flex-wrap flex-col content-start h-full p-4 gap-6">
   {/* Fixed folders */}
   <div className="flex flex-col items-center w-20">
+
     <div className="text-4xl">📁</div>
     <p className="mt-1 text-xs text-white text-center whitespace-nowrap overflow-hidden text-ellipsis w-full">
       Projects
