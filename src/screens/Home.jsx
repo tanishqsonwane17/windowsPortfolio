@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import RightMenu from "../components/RightMenu";
-
+import { useNavigate } from "react-router";
 const Home = () => {
+  const navigate = useNavigate()
   const [menu, setMenu] = useState({ visible: false, x: 0, y: 0 });
   const [folders, setFolders] = useState([]);
   const menuRef = useRef(null);
@@ -68,8 +69,9 @@ const Home = () => {
     >
    <div className="flex flex-wrap flex-col content-start h-full p-4 gap-6">
   {/* Fixed folders */}
-  <div className="flex flex-col items-center w-20">
-
+  <div className="flex flex-col items-center cursor-pointer w-20"
+  onDoubleClick={() => navigate("/projects")}
+  >
     <div className="text-4xl">📁</div>
     <p className="mt-1 text-xs text-white text-center whitespace-nowrap overflow-hidden text-ellipsis w-full">
       Projects

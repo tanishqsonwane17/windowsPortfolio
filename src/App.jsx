@@ -3,6 +3,7 @@ import Home from './screens/Home'
 import Footer from './components/Footer'
 import { Route, Routes } from 'react-router'
 import FileExplorer from './screens/taskbar/FileExplorer'
+import ProjectsFolder from './screens/ProjectsFolder'
 const App = () => {
   return (
     <>
@@ -10,7 +11,7 @@ const App = () => {
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/file-explorer' element={<FileExplorer/>}/>
-      
+      <Route path='/projects' element={<ProjectsFolder/>}/>
     </Routes>
      <Footer/>
     </>
