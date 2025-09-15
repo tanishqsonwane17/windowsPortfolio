@@ -8,7 +8,15 @@ import { VscCopy } from "react-icons/vsc";
 import { LiaPasteSolid } from "react-icons/lia";
 import { PiSortAscendingThin } from "react-icons/pi";
 import { IoTextOutline } from "react-icons/io5";
-
+import { FaHome } from "react-icons/fa";
+import { GrGallery } from "react-icons/gr";
+import { SlScreenDesktop } from "react-icons/sl";
+import { FcDocument } from "react-icons/fc";
+import { PiDownloadSimple } from "react-icons/pi";
+import { PiMusicNotesThin } from "react-icons/pi";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { TfiHarddrive } from "react-icons/tfi";
+import { RiFileVideoFill } from "react-icons/ri";
 const ProjectsFolder = () => {
    const projects = [
       {
@@ -50,7 +58,7 @@ const ProjectsFolder = () => {
 
           <div className='h-full flex gap-8 w-full p-2'>
              <div className='flex gap-1 items-center'>
-              <TbArrowsSort className='text-[#466eff] text-xl'/>
+              <TbArrowsSort className='text-white text-xl'/>
               <p className='text-sm text-white'>sort </p>
              </div>
              <div className='flex gap-1 items-center'>
@@ -62,8 +70,57 @@ const ProjectsFolder = () => {
 
         {/* Main Content */}
         <div className='h-full w-full flex bg-[#222222]'>
-          <div className='h-full w-[10%] bg-[#222222] backdrop-blur-2xl'></div>
-          <div className='h-full w-[90%] bg-[#1c1c1c] p-4 flex gap-12 flex-wrap'>
+          <div className='leftNav h-full w-[10%] bg-[#222222] backdrop-blur-2xl'>
+             <div className='h-full px-6 py-4 text-xs text-white w-full flex flex-col gap-7 '>
+               <div className='flex gap-2 items-center '>
+                <FaHome className='text-white text-sm'/>
+                <p>Home</p>
+               </div>
+               <div className='flex gap-2 items-center '>
+                <GrGallery className='text-white text-sm'/>
+                <p>Gallery</p>
+               </div>
+               
+               <div className='flex gap-2 items-center '>
+                <GrGallery className='text-white text-sm'/>
+                <p>Pictures</p>
+               </div>
+              <div className='flex gap-2 items-center '>
+                <PiMusicNotesThin className='text-white text-sm'/>
+                 <p>Music</p>
+              </div>
+               <div className='flex gap-2 items-center '>
+                <RiFileVideoFill className='text-white text-sm'/>
+                <p>Videos</p>
+               </div>
+               <div className='flex gap-2 items-center '>
+                <SlScreenDesktop className='text-white text-sm'/>
+                <p>This PC</p>
+               </div>
+               <div className='flex gap-2 items-center '>
+                <SlScreenDesktop className='text-white text-sm'/>
+                <p>Desktop</p>
+               </div>
+              <div className='flex gap-2 items-center '>
+                 <FcDocument className='text-white text-sm'/>
+                 <p>Documents</p>
+              </div>
+               <div className='flex gap-2 items-center '>
+                <PiDownloadSimple className='text-white text-sm'/>
+                <p>Downloads</p>
+               </div>
+               <div className='flex gap-2 items-center '>
+                <RiDeleteBinLine className='text-white text-sm'/>
+                <p>Recycle Bin</p>
+               </div>
+               <div className='flex gap-2 items-center '>
+                <TfiHarddrive className='text-white text-sm'/>
+                <p>New Volume</p>
+               </div>
+             </div>
+
+          </div>
+          <div className='topNav h-full w-[90%] bg-[#1c1c1c] p-4 flex gap-12 flex-wrap'>
             {
               projects.map((item,index)=>(
                 <div 
