@@ -9,6 +9,7 @@ import {
 } from "@hello-pangea/dnd";
 
 const Home = () => {
+   const [showBattery, setShowBattery] = useState(false);
   const navigate = useNavigate();
   const [menu, setMenu] = useState({ visible: false, x: 0, y: 0 });
   const [folders, setFolders] = useState([
@@ -34,11 +35,17 @@ const Home = () => {
     setMenu({ visible: true, x, y });
   };
 
-  const handleClick = () => {
-    if (menu.visible) {
-      setMenu({ ...menu, visible: false });
-    }
-  };
+ const handleClick = () => {
+  // Right-click menu close
+  if (menu.visible) {
+    setMenu({ ...menu, visible: false });
+  }
+  // Battery panel close
+  if (showBattery) {
+    setShowBattery(false);
+  }
+};
+
 
   // ✅ New Folder create
   const handleNewFolder = () => {
@@ -80,12 +87,15 @@ const Home = () => {
   };
 
   return (
+
+    
 <div
   onContextMenu={handleRightClick}
   onClick={handleClick}
   className="bg-cover bg-no-repeat h-screen w-screen"
   style={{ backgroundImage: `url(${windows})` }}
 >
+   
 
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="desktop" direction="horizontal">
