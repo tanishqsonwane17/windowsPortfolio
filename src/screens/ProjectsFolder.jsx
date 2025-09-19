@@ -41,7 +41,7 @@ const ProjectsFolder = () => {
     <>
     <div className='h-screen w-full bg-[#1F1F1F] relative'>
         {/* Top bar */}
-        <div className='h-12 w-full flex bg-[#1d1d1d] border border-b-[#525252]'>
+        <div className='topNav h-12 w-full flex bg-[#1d1d1d] border border-b-[#525252]'>
           <div className='h-full  gap-2 flex px-8 items-center'>
             <BsPlusCircle className='text-white'/>
             <p className='text-white text-sm font-extralight'>New</p>
@@ -72,55 +72,55 @@ const ProjectsFolder = () => {
         <div className='h-full w-full flex bg-[#222222]'>
           <div className='leftNav h-full w-[10%] bg-[#222222] backdrop-blur-2xl'>
              <div className='h-full px-6 py-4 text-xs text-white w-full flex flex-col gap-7 '>
-               <div className='flex gap-2 items-center '>
+               <div className='flex gap-2 items-center cursor-pointer '>
                 <FaHome className='text-white text-sm'/>
                 <p>Home</p>
                </div>
-               <div className='flex gap-2 items-center '>
+               <div className='flex gap-2 items-center cursor-pointer '>
                 <GrGallery className='text-white text-sm'/>
                 <p>Gallery</p>
                </div>
                
-               <div className='flex gap-2 items-center '>
+               <div className='flex gap-2 items-center cursor-pointer '>
                 <GrGallery className='text-white text-sm'/>
                 <p>Pictures</p>
                </div>
-              <div className='flex gap-2 items-center '>
+              <div className='flex gap-2 items-center cursor-pointer '>
                 <PiMusicNotesThin className='text-white text-sm'/>
                  <p>Music</p>
               </div>
-               <div className='flex gap-2 items-center '>
+               <div className='flex gap-2 items-center cursor-pointer '>
                 <RiFileVideoFill className='text-white text-sm'/>
                 <p>Videos</p>
                </div>
-               <div className='flex gap-2 items-center '>
+               <div className='flex gap-2 items-center cursor-pointer '>
                 <SlScreenDesktop className='text-white text-sm'/>
                 <p>This PC</p>
                </div>
-               <div className='flex gap-2 items-center '>
+               <div className='flex gap-2 items-center cursor-pointer '>
                 <SlScreenDesktop className='text-white text-sm'/>
                 <p>Desktop</p>
                </div>
-              <div className='flex gap-2 items-center '>
+              <div className='flex gap-2 items-center cursor-pointer '>
                  <FcDocument className='text-white text-sm'/>
                  <p>Documents</p>
               </div>
-               <div className='flex gap-2 items-center '>
+               <div className='flex gap-2 items-center cursor-pointer '>
                 <PiDownloadSimple className='text-white text-sm'/>
                 <p>Downloads</p>
                </div>
-               <div className='flex gap-2 items-center '>
+               <div className='flex gap-2 items-center cursor-pointer '>
                 <RiDeleteBinLine className='text-white text-sm'/>
                 <p>Recycle Bin</p>
                </div>
-               <div className='flex gap-2 items-center '>
+               <div className='flex gap-2 items-center cursor-pointer '>
                 <TfiHarddrive className='text-white text-sm'/>
                 <p>New Volume</p>
                </div>
              </div>
 
           </div>
-          <div className='topNav h-full w-[90%] bg-[#1c1c1c] p-4 flex gap-12 flex-wrap'>
+          <div className=' h-full w-[90%] bg-[#1c1c1c] p-4 flex gap-12 flex-wrap'>
             {
               projects.map((item,index)=>(
                 <div 
