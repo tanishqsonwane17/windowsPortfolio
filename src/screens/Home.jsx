@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import RightMenu from "../components/RightMenu";
 import { useNavigate } from "react-router";
+import windows from  '../../public/images/windows11bg.png'
 import {
   DragDropContext,
   Droppable,
@@ -79,16 +80,18 @@ const Home = () => {
   };
 
   return (
-    <div
-      onContextMenu={handleRightClick}
-      onClick={handleClick}
-      className="h-screen w-full bg-slate-400 bg-[url('https://4kwallpapers.com/images/wallpapers/windows-11-stock-3d-5689x2400-10781.png')] bg-cover bg-center relative"
-    >
+<div
+  onContextMenu={handleRightClick}
+  onClick={handleClick}
+  className="bg-cover bg-no-repeat h-screen w-screen"
+  style={{ backgroundImage: `url(${windows})` }}
+>
+
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="desktop" direction="horizontal">
           {(provided) => (
             <div
-              className="flex flex-wrap gap-6 p-4"
+              className="flex flex-wrap gap-2 p-4"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
@@ -96,8 +99,7 @@ const Home = () => {
                 <Draggable
                   key={folder.id}
                   draggableId={folder.id}
-                  index={index}
-                >
+                  index={index}>
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
@@ -107,8 +109,7 @@ const Home = () => {
                       onDoubleClick={() =>
                         folder.id === "projects" &&
                         navigate("/projects")
-                      }
-                    >
+                      }>
                       <div className="text-4xl">📁</div>
                       {folder.isEditing ? (
                         <input
